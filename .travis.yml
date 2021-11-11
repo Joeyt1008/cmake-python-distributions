@@ -19,6 +19,8 @@ install:
   - python -m pip install -r requirements-dev.txt
   - python -m pip install -r requirements-repair.txt
   - python -m pip install -r requirements-test.txt
+  - python -m pip install cibuildwheel==2.2.0a1
+  - sudo apt-get install cmake
 
 script:
   - pytest tests/
