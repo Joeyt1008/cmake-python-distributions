@@ -26,3 +26,4 @@ script:
     ls dist
     twine --version
     twine check --strict dist/*
+    pytest tests/
