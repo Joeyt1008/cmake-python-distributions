@@ -12,14 +12,18 @@ matrix:
     - arch: arm64-graviton2
       virt: vm
       group: edge
-    - arch: amd64
+    - arch: ppc64le
+    - arch: s390x
 
 install:
+  - python -m pip install cibuildwheel==2.2.0a1
   - python -m pip install -r requirements-deploy.txt
-  - python -m pip install -r requirements-dev.txt
-  - python -m pip install -r requirements-repair.txt
-  - python -m pip install -r requirements-test.txt
-  - python -m pip install cibuildwheel==2.2.0a1 cmake
 
 script:
-  - pytest tests/
+  - |
+    set -e
+    cibuildwheel --output-dir dist
+    ls dist
+    twine --version
+    twine check --strict dist/*
+
